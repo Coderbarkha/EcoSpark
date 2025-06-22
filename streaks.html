@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Streaks - Consistency Tracker</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Assuming your main CSS is in styles.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Basic Reset & Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #fdfdfd;
+  color: #064420;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+/* Navbar */
+.navbar {
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 12px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo on Left */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: black;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid var(--accent-orange);
+}
+
+/* Centered Navigation */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color:darkgreen;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--underline-green);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Profile Icon on Right */
+.profile-icon {
+  font-size: 1.9rem;
+  color: var(--accent-orange);
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+  color: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .profile-icon {
+    align-self: flex-end;
+  }
+}
+
+/* Hero Section */
+.modern-hero {
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem 6%;
+  background-color: #f0fdf4;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-left {
+  flex: 1 1 45%;
+  max-width: 600px;
+}
+
+.hero-left h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.brand-glow {
+  color: #2e7d32;
+  text-shadow: 0 0 8px rgba(46, 125, 50, 0.4);
+}
+
+.hero-left p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.btn.neon {
+  background: #2e7d32;
+  color: #fff;
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #2e7d32;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn.neon:hover {
+  background: #388e3c;
+  transform: scale(1.05);
+}
+
+/* Progress Rings */
+.carbon-rings {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ring {
+  text-align: center;
+  position: relative;
+}
+
+.ring svg {
+  width: 80px;
+  height: 80px;
+  transform: rotate(-90deg);
+}
+
+.ring path.bg {
+  fill: none;
+  stroke: #e0e0e0;
+  stroke-width: 3;
+}
+
+.ring path.progress,
+.ring path.progress2 {
+  fill: none;
+  stroke: #2e7d32;
+  stroke-width: 3;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.ring span {
+  font-size: 1.5rem;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: #064420;
+}
+
+.ring p {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* Floating Cards */
+.hero-right {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.floating-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.floating-card:hover {
+  transform: translateY(-5px);
+}
+
+.floating-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2e7d32;
+}
+
+.floating-card h3 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+  color: #064420;
+}
+
+/* How It Works */
+.how-it-works {
+  background: #ffffff;
+  padding: 4rem 6%;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: #064420;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.step-card {
+  background: #f1f8f4;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.step-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2e7d32;
+}
+
+.step-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Features Section */
+.features {
+  background: #E8F5E9;
+  padding: 4rem 6%;
+  text-align: center;
+}
+
+.features-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.feature-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2e7d32;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.enhanced-footer {
+  background:white;
+  color: black;
+  padding: 4rem 2rem 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 -5px 20px rgba(78, 247, 129, 0.15);
+  border-top: 2px solid rgba(78, 247, 129, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.footer-brand {
+  flex: 1 1 250px;
+}
+
+.footer-brand img {
+  width: 60px;
+  filter: drop-shadow(0 0 5px #4ef781);
+}
+
+.footer-brand h2 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+  color: darkgreen;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.footer-links {
+  flex: 1 1 150px;
+}
+
+.footer-links h4 {
+  color: darkgreen;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-bottom: 1px dashed #4ef78150;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.footer-links a {
+  display: block;
+  margin-bottom: 0.6rem;
+  color:black;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-links a:hover {
+  color: darkgreen;
+  transform: translateX(6px);
+}
+
+.footer-socials {
+  flex: 1 1 150px;
+}
+
+.footer-socials h4 {
+  color:darkgreen;
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: darkgreen;
+  margin-right: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+.social-icons a:hover {
+  color: #5a4d3a;
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  border-top: 1px solid #4ef78130;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #333333;
+}
+
+/* Tooltip for social icons (optional extra polish) */
+.social-icons a[title]::after {
+  content: attr(title);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  background:darkgreen;
+  color: #101820;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover::after {
+  opacity: 1;
+} 
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (reuse from existing navbar) -->
+   <nav class="navbar">
+    <div class="logo">
+      <img src="ecospark.PNG" alt="EcoSpark Logo" />
+      <span>EcoSpark</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="streaks.html"><i class="fas fa-fire"></i> Streaks</a></li>
+      <li><a href="#"><i class="fas fa-award"></i> Badges</a></li>
+      <li><a href="#"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+    </ul>
+    <div class="profile-icon">
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="modern-hero">
+    <div class="hero-left">
+      <h1><span class="brand-glow">Your Consistency Journey</span></h1>
+      <p>Track your daily progress, break limits, and build unstoppable habits. Every streak tells a story of resilience.</p>
+      <div class="carbon-rings">
+        <div class="ring">
+          <svg viewBox="0 0 36 36">
+            <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831"/>
+            <path class="progress" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831"/>
+          </svg>
+          <span>7</span>
+          <p>Current Streak</p>
+        </div>
+        <div class="ring">
+          <svg viewBox="0 0 36 36">
+            <path class="bg" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831"/>
+            <path class="progress2" d="M18 2.0845a15.9155 15.9155 0 1 1 0 31.831"/>
+          </svg>
+          <span>21</span>
+          <p>Best Streak</p>
+        </div>
+      </div>
+      <a href="#track" class="btn neon">Track My Progress</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="floating-card badge-card">
+        <i class="fas fa-medal"></i>
+        <h3>Consistency Champ</h3>
+        <p>Logged in 5 days in a row</p>
+      </div>
+      <div class="floating-card streak-card">
+        <i class="fas fa-fire"></i>
+        <h3>🔥 7 Day Streak</h3>
+        <p>You're on fire! Keep going.</p>
+      </div>
+      <div class="floating-card level-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Level Up!</h3>
+        <p>Next badge in 3 days</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STREAK GOALS SECTION -->
+  <section class="how-it-works" id="track">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">Build habits, one streak at a time.</p>
+    <div class="steps-container">
+      <div class="step-card">
+        <i class="fas fa-check-circle"></i>
+        <h3>Log Daily</h3>
+        <p>Mark tasks as complete every day to maintain your streak.</p>
+      </div>
+      <div class="step-card">
+        <i class="fas fa-trophy"></i>
+        <h3>Earn Badges</h3>
+        <p>Reach milestones and unlock special achievements.</p>
+      </div>
+      <div class="step-card">
+        <i class="fas fa-bolt"></i>
+        <h3>Track Progress</h3>
+        <p>Visualize your growth over time and stay motivated.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTIVATIONAL QUOTE SECTION -->
+  <section class="features">
+    <h2 class="section-title">Why Streaks Matter</h2>
+    <div class="features-container">
+      <div class="feature-card">
+        <i class="fas fa-seedling"></i>
+        <h3>Small Steps, Big Wins</h3>
+        <p>Consistency builds momentum, no matter how small the action.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-heart"></i>
+        <h3>Boost Confidence</h3>
+        <p>See progress in real time. Let your streaks be your motivation.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-clock"></i>
+        <h3>Make Time Count</h3>
+        <p>Every tick on the calendar tells a story of commitment.</p>
+      </div>
+    </div>
+  </section>
+
+ <footer class="enhanced-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="ecospark.PNG" alt="EcoSpark Logo">
+      <h2>EcoSpark</h2>
+      <p>Gamify your green habits. Earn, save, and spark change.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#">About Us</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Leaderboard</a>
+      <a href="#">Badges</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+
+    <div class="footer-socials">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 EcoSpark. All rights reserved. | Built for a greener future 🌍</p>
+  </div>
+</footer> 
+
+</body>
+</html>
