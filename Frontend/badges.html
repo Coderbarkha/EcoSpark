@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoSpark | Badges</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #e6f5ea;
+      --card-bg: #fff;
+      --green: #34a853;
+      --dark-green: #1e7d36;
+      --text: #333;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --transition: 0.3s ease-in-out;
+      --gradient: linear-gradient(135deg, #a8e063, #56ab2f);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Outfit", sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.7rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1s ease-in-out;
+    }
+    p.subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+    .progress-bar {
+      width: 100%;
+      background: #d3f3d6;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .progress {
+      width: 70%; /* Example: 70% progress */
+      height: 20px;
+      background: var(--gradient);
+      transition: width 0.4s ease-in-out;
+    }
+    .badge-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+      background: radial-gradient(circle at top left, #effdef, #beeebe, #ace2ac);
+      border-radius: 12px;
+    }
+    .badge {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: slideIn 0.6s forwards;
+    }
+    .badge:nth-child(n) {
+      animation-delay: calc(0.1s * var(--i));
+    }
+    .badge img {
+      width: 80px;
+      margin-bottom: 1rem;
+      transition: transform var(--transition);
+    }
+    .badge:hover {
+      transform: translateY(-5px);
+    }
+    .badge:hover img {
+      transform: scale(1.05);
+    }
+    .badge-title {
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+    .share-button {
+      margin-top: 2rem;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .share-button:hover {
+      background: #34a853;
+    }
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #fdfdfd;
+  color: #064420;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+/* Navbar */
+.navbar {
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 12px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo on Left */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: black;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid var(--accent-orange);
+}
+
+/* Centered Navigation */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color:darkgreen;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--underline-green);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Profile Icon on Right */
+.profile-icon {
+  font-size: 1.9rem;
+  color: var(--accent-orange);
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+  color: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .profile-icon {
+    align-self: flex-end;
+  }
+}
+.enhanced-footer {
+  background:white;
+  color: black;
+  padding: 4rem 2rem 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 -5px 20px rgba(78, 247, 129, 0.15);
+  border-top: 2px solid rgba(78, 247, 129, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.footer-brand {
+  flex: 1 1 250px;
+}
+
+.footer-brand img {
+  width: 60px;
+  filter: drop-shadow(0 0 5px #4ef781);
+}
+
+.footer-brand h2 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+  color: darkgreen;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.footer-links {
+  flex: 1 1 150px;
+}
+
+.footer-links h4 {
+  color: darkgreen;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-bottom: 1px dashed #4ef78150;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.footer-links a {
+  display: block;
+  margin-bottom: 0.6rem;
+  color:black;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-links a:hover {
+  color: darkgreen;
+  transform: translateX(6px);
+}
+
+.footer-socials {
+  flex: 1 1 150px;
+}
+
+.footer-socials h4 {
+  color:darkgreen;
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: darkgreen;
+  margin-right: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+.social-icons a:hover {
+  color: #5a4d3a;
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  border-top: 1px solid #4ef78130;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #333333;
+}
+
+/* Tooltip for social icons (optional extra polish) */
+.social-icons a[title]::after {
+  content: attr(title);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  background:darkgreen;
+  color: #101820;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover::after {
+  opacity: 1;
+} 
+.badge.locked {
+  opacity: 0.3;
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+     <nav class="navbar">
+    <div class="logo">
+      <img src="ecospark.PNG" alt="EcoSpark Logo" />
+      <span>EcoSpark</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="streaks.html"><i class="fas fa-fire"></i> Streaks</a></li>
+      <li><a href="badges.html"><i class="fas fa-award"></i> Badges</a></li>
+      <li><a href="#"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+    </ul>
+    <div class="profile-icon">
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>🏆 EcoSpark Badges</h1>
+    <p class="subtitle">Celebrate your progress as an eco-warrior! Keep taking green actions to unlock more badges.</p>
+
+    <div class="progress-bar">
+      <div class="progress" style="width: 70%;"></div>
+    </div>
+
+    <div class="badge-container">
+  <div class="badge locked" style="--i:1" data-unlock="5">
+    <img src="https://img.icons8.com/fluency/96/leaf.png" alt="Green Leaf" />
+    <p class="badge-title">Green Leaf</p>
+  </div>
+  <div class="badge" style="--i:2">
+    <img src="tree-planter.jfif" alt="Tree Planter" />
+    <p class="badge-title">Tree Planter</p>
+  </div>
+  <div class="badge" style="--i:3">
+    <img src="recycle-hero.jfif" alt="Recycler" />
+    <p class="badge-title">Recycler</p>
+  </div>
+  <div class="badge" style="--i:4">
+    <img src="green-innovator.jfif" alt="Green Innovator" />
+    <p class="badge-title">Green Innovator</p>
+  </div>
+  <div class="badge" style="--i:4">
+    <img src="carbon-crusher.jfif" alt="Carbon-Crusher" />
+    <p class="badge-title">Carbon-Crusher</p>
+  </div>
+  <div class="badge" style="--i:5">
+    <img src="clean-champion.jfif" alt="Clean Champion" />
+    <p class="badge-title">Clean Champion</p>
+  </div>
+  <div class="badge" style="--i:6">
+    <img src="https://img.icons8.com/fluency/96/bicycle.png" alt="Bike Rider" />
+    <p class="badge-title">Bike Rider</p>
+  </div>
+  <div class="badge" style="--i:4">
+    <img src="leafwarrior.PNG " alt="leaf-warrior" />
+    <p class="badge-title">Leaf-Warrior</p>
+  </div>
+  <div class="badge" style="--i:7">
+    <img src="https://img.icons8.com/fluency/96/water.png" alt="Water Saver" />
+    <p class="badge-title">Water Saver</p>
+  </div>
+  <div class="badge" style="--i:8">
+    <img src="https://img.icons8.com/fluency/96/electricity.png" alt="Energy Saver" />
+    <p class="badge-title">Energy Saver</p>
+  </div>
+  <div class="badge" style="--i:4">
+    <img src="eco-legendbadge.jfif" alt="EcoLegend" />
+    <p class="badge-title">Eco Legend</p>
+  </div>
+  <div class="badge" style="--i:9">
+    <img src="eco-shopper.jfif" alt="Eco Shopper" />
+    <p class="badge-title">Eco Shopper</p>
+  </div>
+  <div class="badge" style="--i:10">
+    <img src="https://img.icons8.com/fluency/96/solar-panel.png" alt="Solar Supporter" />
+    <p class="badge-title">Solar Supporter</p>
+  </div>
+  <div class="badge" style="--i:11">
+    <img src="compost-master.png" alt="Compost Creator" />
+    <p class="badge-title">Compost Creator</p>
+  </div>
+  <div class="badge" style="--i:12">
+    <img src="https://img.icons8.com/fluency/96/flower.png" alt="Gardening Guru" />
+    <p class="badge-title">Gardening Guru</p>
+  </div>
+  <div class="badge" style="--i:13">
+    <img src="green-influencer.jfif" alt="Green Influencer" />
+    <p class="badge-title">Green Influencer</p>
+  </div>
+  <div class="badge" style="--i:14">
+    <img src="eco-volunteer.gif" alt="Eco Architect" />
+    <p class="badge-title">Eco Architect</p>
+  </div>
+  <div class="badge" style="--i:15">
+    <img src="transittraveller.png" alt="Transit Traveller" />
+    <p class="badge-title">Transit Traveller</p>
+  </div>
+  <div class="badge" style="--i:16">
+    <img src="https://img.icons8.com/fluency/96/paper-plane.png" alt="Paper Saver" />
+    <p class="badge-title">Paper Saver</p>
+  </div>
+  <div class="badge" style="--i:17">
+    <img src="https://img.icons8.com/fluency/96/no-plastic.png" alt="Plastic-Free Hero" />
+    <p class="badge-title">Plastic-Free Hero</p>
+  </div>
+  <div class="badge" style="--i:18">
+    <img src="https://img.icons8.com/fluency/96/biomass.png" alt="Biomass Buddy" />
+    <p class="badge-title">Biomass Buddy</p>
+  </div>
+  <div class="badge" style="--i:19">
+    <img src="eco-innovator.png" alt="Eco Innovator" />
+    <p class="badge-title">Eco Innovator</p>
+  </div>
+  <div class="badge" style="--i:20">
+    <img src="naturenurture.jfif" alt="Nature Nurturer" />
+    <p class="badge-title">Nature Nurturer</p>
+  </div>
+  <div class="badge" style="--i:21">
+    <img src="https://img.icons8.com/fluency/96/wind-turbine.png" alt="Wind Warrior" />
+    <p class="badge-title">Wind Warrior</p>
+  </div>
+  <div class="badge" style="--i:22">
+    <img src="https://img.icons8.com/fluency/96/battery--v1.png" alt="Battery Recycler" />
+    <p class="badge-title">Battery Recycler</p>
+  </div>
+</div>
+
+    <button class="share-button" onclick="shareBadges()">📣 Share Your Achievements</button>
+  </div>
+  <footer class="enhanced-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="ecospark.PNG" alt="EcoSpark Logo">
+      <h2>EcoSpark</h2>
+      <p>Gamify your green habits. Earn, save, and spark change.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#">About Us</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Leaderboard</a>
+      <a href="#">Badges</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+
+    <div class="footer-socials">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 EcoSpark. All rights reserved. | Built for a greener future 🌍</p>
+  </div>
+</footer> 
+<input type="range" min="0" max="100" value="70" id="progressInput" />
+  <script>
+    const progressInput = document.getElementById('progressInput');
+  progressInput.addEventListener('input', () => {
+    const value = parseInt(progressInput.value);
+    document.querySelector('.progress').style.width = value + "%";
+
+    document.querySelectorAll('.badge').forEach(badge => {
+      const unlockAt = parseInt(badge.getAttribute("data-unlock")) || 0;
+      if (value >= unlockAt) {
+        badge.classList.remove("locked");
+      } else {
+        badge.classList.add("locked");
+      }
+    });
+  });
+    function shareBadges() {
+      const shareText = "I've earned eco-friendly badges on EcoSpark 🌱! Join me in protecting the planet!";
+      const url = window.location.href;
+      if (navigator.share) {
+        navigator.share({
+          title: 'EcoSpark Badges',
+          text: shareText,
+          url: url
+        }).catch(console.error);
+      } else {
+        prompt("Copy and share this link:", url);
+      }
+    }
+    const userProgress = 70; // Example: 70%
+
+  // Update progress bar
+  document.querySelector('.progress').style.width = userProgress + "%";
+
+  // Unlock badges
+  document.querySelectorAll('.badge').forEach(badge => {
+    const unlockAt = parseInt(badge.getAttribute("data-unlock")) || 0;
+    if (userProgress >= unlockAt) {
+      badge.classList.remove("locked");
+    } else {
+      badge.classList.add("locked");
+    }
+  });
+
+  // Optional: Animate unlocked badges
+  document.querySelectorAll('.badge:not(.locked)').forEach((badge, index) => {
+    badge.style.animationDelay = `${0.1 * index}s`;
+    badge.style.opacity = "1";
+    badge.style.transform = "translateY(0)";
+  });
+  </script>
+</body>
+</html>
