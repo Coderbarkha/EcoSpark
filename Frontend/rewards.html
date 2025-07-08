@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eco Challenge • Rewards</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #43a047;
+      --light-green: #e0f2f1;
+      --slate: #2e7d32;
+      --white: #ffffff;
+      --gray: #616161;
+      --accent: #a5d6a7;
+      --hover-green: #388e3c;
+      --gold: #ffd54f;
+      --overlay: rgba(0,0,0,0.6);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+  background-color: #fdfdfd;
+  color: #064420;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+/* Navbar */
+.navbar {
+  background-color:white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 0 0 12px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo on Left */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: black;
+}
+
+.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid var(--accent-orange);
+}
+
+/* Centered Navigation */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color:darkgreen;
+  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.2);
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--underline-green);
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Profile Icon on Right */
+.profile-icon {
+  font-size: 1.9rem;
+  color: var(--accent-orange);
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.2);
+  color: var(--primary-dark);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .profile-icon {
+    align-self: flex-end;
+  }
+}
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .stats {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-bottom:40px;
+    }
+    .card {
+      background: var(--white);
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      overflow:hidden;
+      transition:transform .3s,box-shadow .3s;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card img {
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+    .card-content {
+      padding:20px;
+    }
+    .card-content h3 {
+      font-size:24px;
+      color:var(--green);
+      margin-bottom:10px;
+    }
+    .card-content p {
+      color:var(--gray);
+      font-size:15px;
+      line-height:1.5;
+      margin-bottom:15px;
+    }
+    #challenge-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+    .buttons {
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      flex:1;
+      padding:10px;
+      font-size:15px;
+      text-align:center;
+      border-radius:8px;
+      cursor:pointer;
+      transition: background .3s,transform .2s;
+      border: none;
+    }
+    .btn:hover { transform: scale(1.05); }
+    .btn-join {
+      background: var(--accent);
+      color: var(--slate);
+    }
+    .btn-join:hover {
+      background: var(--hover-green);
+      color: var(--white);
+    }
+    .btn-complete {
+      background: var(--green);
+      color: var(--white);
+    }
+    .btn-coin {
+      background: var(--gold);
+      color: #333;
+    }
+    .btn-coin:hover {
+      background:#ffca28;
+    }
+    .coins {
+      display:flex;
+      align-items:center;
+      font-size:18px;
+      margin-top:10px;
+    }
+    .coins i { margin-right:5px; color:#ffc107; }
+    footer {
+      text-align:center;
+      padding:30px 0;
+      color: var(--gray);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--overlay);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    .modal-content h2 {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 20px;
+      background: var(--accent);
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      transition: width 0.4s;
+    }
+    .leaderboard {
+      margin-top: 60px;
+    }
+    .leaderboard h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--slate);
+    }
+    .leaderboard table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .leaderboard th, .leaderboard td {
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    .leaderboard th {
+      background: var(--light-green);
+    }
+    .enhanced-footer {
+  background:white;
+  color: black;
+  padding: 4rem 2rem 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 -5px 20px rgba(78, 247, 129, 0.15);
+  border-top: 2px solid rgba(78, 247, 129, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.footer-brand {
+  flex: 1 1 250px;
+}
+
+.footer-brand img {
+  width: 60px;
+  filter: drop-shadow(0 0 5px #4ef781);
+}
+
+.footer-brand h2 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+  color: darkgreen;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.footer-links {
+  flex: 1 1 150px;
+}
+
+.footer-links h4 {
+  color: darkgreen;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-bottom: 1px dashed #4ef78150;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.footer-links a {
+  display: block;
+  margin-bottom: 0.6rem;
+  color:black;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-links a:hover {
+  color: darkgreen;
+  transform: translateX(6px);
+}
+
+.footer-socials {
+  flex: 1 1 150px;
+}
+
+.footer-socials h4 {
+  color:darkgreen;
+  margin-bottom: 1rem;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: darkgreen;
+  margin-right: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+.social-icons a:hover {
+  color: #5a4d3a;
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  border-top: 1px solid #4ef78130;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #333333;
+}
+
+/* Tooltip for social icons (optional extra polish) */
+.social-icons a[title]::after {
+  content: attr(title);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  background:darkgreen;
+  color: #101820;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover::after {
+  opacity: 1;
+} 
+  </style>
+</head>
+<body>
+     <nav class="navbar">
+    <div class="logo">
+      <img src="ecospark.PNG" alt="EcoSpark Logo" />
+      <span>EcoSpark</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="streaks.html"><i class="fas fa-fire"></i> Streaks</a></li>
+      <li><a href="badges.html"><i class="fas fa-award"></i> Badges</a></li>
+      <li><a href="leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a></li>
+    </ul>
+    <div class="profile-icon">
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </nav>
+  <main>
+    <div class="stats">
+      <div class="card-content card">
+        <h3>Participants Today</h3>
+        <p id="stat-participants">Loading...</p>
+      </div>
+      <div class="card-content card">
+        <h3>Rewards Redeemed</h3>
+        <p id="stat-rewards">Loading...</p>
+      </div>
+    </div>
+    <div class="stats" id="challenge-container"></div>
+
+    <div class="leaderboard">
+      <h3>🌟 Top Eco Warriors</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <tr><td>1</td><td>Aarav</td><td>450</td></tr>
+          <tr><td>2</td><td>Isha</td><td>400</td></tr>
+          <tr><td>3</td><td>Rohan</td><td>370</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal" id="progressModal">
+    <div class="modal-content">
+      <h2>Challenge Progress</h2>
+      <p>You are 70% there!</p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 70%;"></div>
+      </div>
+      <br>
+      <button class="btn btn-join" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+   <footer class="enhanced-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="ecospark.PNG" alt="EcoSpark Logo">
+      <h2>EcoSpark</h2>
+      <p>Gamify your green habits. Earn, save, and spark change.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#">About Us</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Leaderboard</a>
+      <a href="#">Badges</a>
+    </div>
+
+    <div class="footer-links">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+    </div>
+
+    <div class="footer-socials">
+      <h4>Connect</h4>
+      <div class="social-icons">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 EcoSpark. All rights reserved. | Built for a greener future 🌍</p>
+  </div>
+</footer>
+
+  <script>
+    const container = document.getElementById("challenge-container");
+    const challenges = [
+  { title: "Save Water", desc: "Conserve 10 liters by turning off taps while brushing.", coins: 50, img: "savewater.jfif" },
+  { title: "Plant a Tree", desc: "Plant one native tree in your neighborhood.", coins: 100, img: "planttree.jfif" },
+  { title: "Plastic-Free Day", desc: "Avoid using any plastic items today.", coins: 80, img: "plasticfreeday.jfif" },
+  { title: "Bike to Work", desc: "Use a bicycle instead of a car.", coins: 90, img: "biketowork.jfif" },
+  { title: "Recycling Run", desc: "Separate your waste and recycle properly.", coins: 70, img: "recyclingrun.jfif" },
+  { title: "Go Meatless", desc: "Eat plant-based meals for one day.", coins: 60, img: "https://images.unsplash.com/photo-1506084868230-bb9d95c24759" },
+  { title: "Switch it Off", desc: "Turn off appliances when not in use.", coins: 40, img: "switchoff.jfif" },
+  { title: "Carpool Day", desc: "Share a ride to reduce emissions.", coins: 75, img: "carpool.png" },
+  { title: "Clean Up Drive", desc: "Join or organize a local cleanup activity.", coins: 120, img: "cleanupdrive.jfif" },
+  { title: "Refill Habit", desc: "Carry your own water bottle.", coins: 30, img: "refillhabit.jfif" },
+  { title: "Energy Saver", desc: "Replace bulbs with LED lights.", coins: 55, img: "saveenergy.jfif" },
+  { title: "Eco Shopping", desc: "Use cloth bags while shopping.", coins: 45, img: "eco-shopper.jfif" }
+];
+
+
+    challenges.forEach(ch => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${ch.img}" alt="${ch.title}">
+        <div class="card-content">
+          <h3>${ch.title}</h3>
+          <p>${ch.desc}</p>
+          <div class="buttons">
+            <div class="btn btn-join" onclick="joinChallenge(this)">Join</div>
+            <div class="btn btn-complete" onclick="completeChallenge(this)" hidden>Complete</div>
+            <div class="btn btn-coin" onclick="collectCoins(this)" hidden>Collect ${ch.coins} <i class='fas fa-coins'></i></div>
+          </div>
+        </div>`;
+      container.appendChild(div);
+    });
+
+    function joinChallenge(btn) {
+      btn.hidden = true;
+      const card = btn.closest('.buttons');
+      card.querySelector('.btn-complete').hidden = false;
+    }
+
+    function completeChallenge(btn) {
+      btn.hidden = true;
+      const card = btn.closest('.buttons');
+      card.querySelector('.btn-coin').hidden = false;
+      showModal();
+    }
+
+    function collectCoins(btn) {
+      btn.hidden = true;
+    }
+
+    function showModal() {
+      document.getElementById("progressModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("progressModal").style.display = "none";
+    }
+
+    async function fetchStats() {
+      try {
+        const res = await fetch('https://api.mocki.io/v2/79fb05cb');
+        const d = await res.json();
+        document.getElementById('stat-participants').textContent = d.participantsToday;
+        document.getElementById('stat-rewards').textContent = d.rewardsRedeemed;
+      } catch {
+        document.getElementById('stat-participants').textContent = 'N/A';
+        document.getElementById('stat-rewards').textContent = 'N/A';
+      }
+    }
+    fetchStats();
+    setInterval(fetchStats,60000);
+  </script>
+</body>
+</html>
