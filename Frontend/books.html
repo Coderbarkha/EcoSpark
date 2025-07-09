@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoSpark Books</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #e8f5e9;
+      color: #2e7d32;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    header {
+      background-color: #c8e6c9;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 2.7rem;
+      color: #1b5e20;
+    }
+
+    .intro {
+      text-align: center;
+      padding: 30px;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+
+    .book-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .book-card h3 {
+      color: #33691e;
+      margin: 10px 0;
+    }
+
+    .book-card p {
+      font-size: 0.95rem;
+      color: #4e944f;
+      text-align: center;
+    }
+
+    .book-card button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #66bb6a;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .book-card button:hover {
+      background-color: #388e3c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #c8e6c9;
+      color: #2e7d32;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1><i class="fas fa-leaf"></i> Eco Learning Library</h1>
+</header>
+
+<section class="intro">
+  <p>Welcome to the <strong>EcoSpark Library</strong> – a collection of inspiring books focused on sustainability, green living, climate education, and how we can protect our planet. Empower yourself with knowledge to make a difference!</p>
+</section>
+
+<section class="book-grid">
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?earth,nature" alt="The Earth & Us">
+    <h3>The Earth & Us</h3>
+    <p>A beautiful introduction to how our actions affect nature and what we can do to protect it.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?green,leaves" alt="Green Habits">
+    <h3>Green Habits</h3>
+    <p>Learn how small changes in your daily routine can lead to a greener planet.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?recycling,environment" alt="Recycle Revolution">
+    <h3>Recycle Revolution</h3>
+    <p>Discover how recycling can change the future and save our ecosystems.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?solar,energy" alt="Solar Smarts">
+    <h3>Solar Smarts</h3>
+    <p>An exciting dive into the power of renewable solar energy and its impact on our world.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?sustainability,green" alt="Sustainable Living">
+    <h3>Sustainable Living</h3>
+    <p>Get inspired to live more sustainably through practical tips and real-life stories.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+
+  <div class="book-card">
+    <img src="https://source.unsplash.com/300x180/?climate,change" alt="Climate Chronicles">
+    <h3>Climate Chronicles</h3>
+    <p>A detailed narrative about climate change, its causes, and how we can act now.</p>
+    <button><i class="fas fa-book-open"></i> Read Now</button>
+  </div>
+</section>
+
+<footer>
+  <p>🌱 EcoSpark © 2025 | Learn. Act. Inspire.</p>
+</footer>
+
+</body>
+</html>
